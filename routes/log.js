@@ -13,11 +13,11 @@ function getDateString () {
   return '' + date.getFullYear() + (date.getMonth() + 1) + date.getDate()
 }
 
-// FIXME
-let uploadFileDir = '/Users/erichua/tmp/' + getDateString() + '/'
-
 router.get('/:id', function (req, res, next) {
   let logId = req.params.id
+
+  const config = req.app.get('config')
+  const uploadFileDir = config.fileUploadPath
   let logFilePath = uploadFileDir + logId
   fs.readFile(logFilePath, (err, data) => {
     if (err) {
