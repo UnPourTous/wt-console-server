@@ -33,7 +33,13 @@ router.get('/:id', function (req, res, next) {
 })
 
 router.get('/', function (req, res, next) {
+  const config = req.app.get('config')
+  const uploadFileDir = config.fileUploadPath
   fs.readdir(uploadFileDir, function (err, files) {
+    if (err) {
+      res.status(404).json(JSON.stringify(err))
+      return
+    }
     console.log(files)
     res.json(files)
   })
@@ -41,7 +47,9 @@ router.get('/', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
   console.log(req.body)
-  let body = ''
+  const config = req.app.get('config')
+  const uploadFileDir = config.fileUploadPath
+
   let logFileId = '' + getAutoIncLogId()
   let filePath = uploadFileDir + logFileId
   if (req && req.body) {
@@ -58,7 +66,6 @@ router.post('/', function (req, res, next) {
         res.status(500).json(err)
       }
     })
-    return
   } else {
     res.end('requst without body is not allowed', 400)
   }
