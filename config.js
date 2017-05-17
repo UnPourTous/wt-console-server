@@ -1,7 +1,7 @@
 var config = {
   ipWhiteList: [],
   ipBlackList: [],
-  fileUploadPath: './server/uploadedLogFiles/', // TODO abs path is batter
+  fileUploadPath: __dirname + '/uploadedLogFiles/',
   bodyLimit: '50mb'
 }
 module.exports = config

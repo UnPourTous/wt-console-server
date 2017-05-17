@@ -8,7 +8,7 @@ let bodyParser = require('body-parser')
 let cors = require('cors')
 // let ipfilter = require('express-ipfilter').IpFilter
 
-app = express()
+const app = express()
 let config = require('./config')
 
 let log = require('./routes/log')
