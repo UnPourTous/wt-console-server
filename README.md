@@ -30,7 +30,7 @@ First, you should know the format of a single log. then put it in to the upload 
 
 A valid upload request should be like this
 
-``` js
+``` shell
 curl -X POST \
   http://localhost:3000/v1/log \
   -H 'cache-control: no-cache' \
