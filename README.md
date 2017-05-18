@@ -20,9 +20,9 @@ First, you should know the format of a single log. then put it in to the upload 
 
 ### 1. Single log format
 
-| key | require/option | type | description |
-|---|---|----------------|---|---|
-|ts|require|String|Timestamp in ms|
+key | require/option | type | description 
+--- | --- | --- | ---
+ts | require | String | Timestamp in ms 
 |msg|require|String|Log content, all log should be converted to string before upload|
 |tags|option|Array|custom types defined for this log, we have some predefined tags ['ERROR', 'WARN', 'INFO']|
 
