@@ -1,5 +1,5 @@
-# TianYan Server 
-Tianyan-server is an open source log manager backend which can be private deployed.
+# TianYan-Server 
+Tianyan-Server is an open source log manager backend which can be private deployed.
 
 ## Setup Server
 ```
