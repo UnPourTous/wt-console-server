@@ -13,6 +13,8 @@ angular.module('myApp.sub').config(['$routeProvider', function ($routeProvider) 
     data.logId = $routeParams.logId || ''
     if (data.logId) {
       queryLog(data.logId)
+
+      LogViewerService.requestRecentLogIdList().then()
     }
 
     // this._mdPanel = $mdPanel
@@ -54,8 +56,9 @@ angular.module('myApp.sub').config(['$routeProvider', function ($routeProvider) 
       data.showLoading = true
       LogViewerService.requestLogById(logId).then(function (result) {
         data.showLoading = false
-        console.log(result)
-        data.logList = beautifyLog(result)
+        console.log(result.logList)
+        data.logList = beautifyLog(result.logList)
+        data.meta = result.meta
       }, function (error) {
         data.showLoading = false
         console.log(error)
@@ -63,7 +66,7 @@ angular.module('myApp.sub').config(['$routeProvider', function ($routeProvider) 
           $mdDialog.alert()
             .parent(angular.element(document.querySelector('#popupContainer')))
             .clickOutsideToClose(true)
-            .textContent(error ? JSON.stringify(error) : 'unexpected error, retry please')
+            .textContent(error ? error.error : 'unexpected error, retry please')
             .ok('Close')
         )
       })

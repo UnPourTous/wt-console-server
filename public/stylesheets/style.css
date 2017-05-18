@@ -1,3 +1,9 @@
+.meta-info {
+    padding: 10px;
+    background-color: #e1f5fe;
+    color: #AAA;
+    margin-bottom: 20px;
+}
 .table {
     text-align: left;
     border-collapse: collapse;
@@ -15,10 +21,16 @@
 }
 
 .table tr td, .table tr th {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.table tr td:first-child, .table tr th:first-child {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+.table {
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.table thead tr:first-child {
+.table tr:first-child {
     background-color: rgba(0, 0, 0, 0.05);
 }
 

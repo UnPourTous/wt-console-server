@@ -1,28 +1,27 @@
-let express = require('express')
-let fs = require('fs')
-let mkdirp = require('mkdirp')
-let router = express.Router()
-let logId = 0
+const express = require('express')
+const fs = require('fs')
+const mkdirp = require('mkdirp')
+const router = express.Router()
+const path = require('path')
 
-function getAutoIncLogId () {
-  return logId++
-}
-
-function getDateString () {
-  let date = new Date()
-  return '' + date.getFullYear() + (date.getMonth() + 1) + date.getDate()
+function saveLogId2File (maxLogId) {
+  fs.writeFile('./maxLogId.txt', '' + maxLogId, 'utf8', (err) => {
+    if (err) throw err
+  })
 }
 
 router.get('/:id', function (req, res, next) {
   let logId = req.params.id
-
   const config = req.app.get('config')
   const uploadFileDir = config.fileUploadPath
-  let logFilePath = uploadFileDir + logId
+
+  let logFilePath = path.join(uploadFileDir, '' + logId)
   fs.readFile(logFilePath, (err, data) => {
     if (err) {
       if (err.code === 'ENOENT') {
-        res.status(404).json('logId ' + logId + ' does not exist')
+        res.status(404).json({
+          error: 'logId ' + logId + ' does not exist'
+        })
       } else {
         throw err
       }
@@ -34,12 +33,17 @@ router.get('/:id', function (req, res, next) {
 
 router.get('/', function (req, res, next) {
   const config = req.app.get('config')
+  const limit = req.query.limit || 10
   const uploadFileDir = config.fileUploadPath
   fs.readdir(uploadFileDir, function (err, files) {
     if (err) {
       res.status(404).json(JSON.stringify(err))
       return
     }
+    files = files.map(item => {
+      return parseInt(item)
+    })
+    files = files.sort().slice(-1 * limit).reverse()
     console.log(files)
     res.json(files)
   })
@@ -50,8 +54,10 @@ router.post('/', function (req, res, next) {
   const config = req.app.get('config')
   const uploadFileDir = config.fileUploadPath
 
-  let logFileId = '' + getAutoIncLogId()
-  let filePath = uploadFileDir + logFileId
+  console.log(req.app.locals.maxLogId)
+  console.log(req.app.locals)
+  let logFileId = '' + (req.app.locals.maxLogId + 1)
+  let filePath = path.join(uploadFileDir, '' + logFileId)
   if (req && req.body) {
     mkdirp(uploadFileDir, function (err) {
       if (err) {
@@ -59,9 +65,22 @@ router.post('/', function (req, res, next) {
         console.error(err)
       }
     })
-    fs.writeFile(filePath, JSON.stringify(req.body), function (err) {
+
+    req.body.meta = {
+      uploadTs: new Date().getTime(),
+      id: logFileId,
+      uploadIp: req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress
+    }
+
+    const bodyJson = JSON.stringify(req.body)
+    fs.writeFile(filePath, bodyJson, function (err) {
       if (!err) {
-        res.json(logFileId)
+        res.json({
+          id: logFileId
+        })
+
+        req.app.locals.maxLogId += 1
+        saveLogId2File(req.app.locals.maxLogId)
       } else {
         res.status(500).json(err)
       }

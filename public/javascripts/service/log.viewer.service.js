@@ -4,10 +4,21 @@ angular.module('myApp.sub').factory('LogViewerService', ['$timeout', '$interval'
     return {
       requestLogById: function (logId) {
         return $q(function (resolve, reject) {
-          $http.get('log/' + logId).then(function (response) {
+          $http.get('v1/log/' + logId).then(function (response) {
             resolve(response.data)
-          }, function (response) {
-            reject(response.data)
+          }, function (error) {
+            reject((error && error.data) ? error.data : 'unknown error')
+          })
+        })
+      },
+      requestRecentLogIdList: function (logId) {
+        return $q(function (resolve, reject) {
+          $http.get('v1/log').then(function (response) {
+            console.log(response)
+            resolve(response.data)
+          }, function (error) {
+            console.log(error)
+            reject(error)
           })
         })
       }

@@ -3,11 +3,11 @@
     <div  layout="row" class="md-toolbar-tools">
       <h3 flex="20" class="md-toolbar-tools">TianYan</h3>
       <div flex></div>
-      <md-button class="md-raised" ng-click="func.onSetKeyword()">
-        Highlight Keywords
-      </md-button>
+      <!--<md-button class="md-raised" ng-click="func.onSetKeyword()">-->
+        <!--Highlight Keywords-->
+      <!--</md-button>-->
 
-      <md-input-container flex="50" md-no-float class="md-margin md-block" style="background-color: rgb(255,255,255); color: rgba(0,0,0,0.87);">
+      <md-input-container flex="30" md-no-float class="md-margin md-block" style="background-color: rgb(255,255,255); color: rgba(0,0,0,0.87);">
         <input ng-model="data.logId" autofocus tabindex="0" placeholder="Input log id" ng-keyup="$event.keyCode == 13 && func.onClickSearch();"/>
       </md-input-container>
 
@@ -19,8 +19,14 @@
   <md-content flex layout="column" layout-fill>
     <md-progress-linear md-mode="query" ng-disabled="!data.showLoading"></md-progress-linear>
     <md-content class="md-padding">
-      <div class="table" layout="column" ng-if="!data.logList">
-        Input your log id to query your uploaded log
+      <div class="meta-info" ng-if="data.logList">
+        <div>Upload time: {{data.meta.uploadTs | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+        <div>Upload IP: {{data.meta.uploadIp}}</div>
+        <div>Log lines: {{data.logList ? data.logList.length : 0}}</div>
+      </div>
+
+      <div layout="column" ng-if="!data.logList">
+        Please input a valid log id to query your uploaded log
       </div>
 
       <div class="table" layout="column" ng-if="!data.logList && data.logList.length === 0">
@@ -35,7 +41,7 @@
         <tr layout="row"
           layout-fill=""
           ng-repeat="item in data.logList | orderBy:'datetime' track by $index">
-          <td flex="15" ng-class="{highlight: item.type == 'error'}" ng-bind="item.datetime | date:'MM-dd HH-mm-ss'"></td>
+          <td flex="15" ng-class="{highlight: item.type == 'error'}" ng-bind="item.datetime | date:'yyyy-MM-dd HH:mm:ss'"></td>
           <td flex="85" ng-class="{highlight: item.type == 'error'}" style="word-wrap: break-word;"><span ng-if="item.errorLabel" ng-bind="item.errorLabel" class="error-label"></span><span ng-bind="item.body"></span></td>
         </tr>
       </table>

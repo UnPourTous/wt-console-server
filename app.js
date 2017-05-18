@@ -1,5 +1,6 @@
 let express = require('express')
 let path = require('path')
+let fs = require('fs')
 // let favicon = require('serve-favicon')
 let logger = require('morgan')
 let cookieParser = require('cookie-parser')
@@ -26,10 +27,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
-app.set('view engine', 'jade');
+app.set('view engine', 'jade')
 
 // router
-app.use('/log', log)
+app.use('/v1/log', log)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -45,8 +46,14 @@ app.use(function (err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {}
 
   // render the error page
-  res.status(err.status || 500)
-  res.render('error')
+  res.status(err.status || 500).json({error: err})
 })
 
+app.locals.maxLogId = 0
+try {
+  app.locals.maxLogId = parseInt(fs.readFileSync('./maxLogId.txt', 'utf-8'))
+} catch (e) {
+  console.log(e)
+}
+console.log('app.locals.maxLogId: ' + app.locals.maxLogId)
 module.exports = app
