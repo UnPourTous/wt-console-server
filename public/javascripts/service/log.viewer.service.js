@@ -13,7 +13,7 @@ angular.module('myApp.sub').factory('LogViewerService', ['$timeout', '$interval'
       },
       requestRecentLogIdList: function (logId) {
         return $q(function (resolve, reject) {
-          $http.get('v1/log').then(function (response) {
+          $http.get('v1/log?limit=20').then(function (response) {
             console.log(response)
             resolve(response.data)
           }, function (error) {
