@@ -1,7 +1,9 @@
 # TianYan-Server 
+
+## 0. Introduction 
 Tianyan-Server is an open source log manager backend which can be private deployed.
 
-## Setup Server
+## 1. Setup Server
 ```
 git clone xxxx
 cd tianyan-server 
@@ -15,10 +17,10 @@ node ./bin/www --exec babel-node
 
 ```
 
-## Log format
+## 2. Log format
 First, you should know the format of a single log. then put it in to the upload body.
 
-### 1. Single log format
+### 2.1. Single log format
 
 key | require/option | type | description 
 --- | --- | --- | ---
@@ -26,7 +28,7 @@ ts | require | String | Timestamp in ms
 |msg|require|String|Log content, all log should be converted to string before upload|
 |tags|option|Array|custom types defined for this log, we have some predefined tags ['ERROR', 'WARN', 'INFO']|
 
-### 2. Assemble your upload body (In order to fit my log viewer)
+### 2.2. Assemble your upload body (In order to fit my log viewer)
 
 A valid upload request should be like this
 
@@ -60,7 +62,7 @@ The corresponding response which contain the log id we need.
 Then you can use this log id to get your uploaded log at [http://youhostname:3000/#!/logviewer/520](http://youhostname:3000/#!/logviewer/520)
 
 
-## Production Deployment
+## 3. Production Deployment
 
 
-## Security Tips
+## 4. Security Tips
