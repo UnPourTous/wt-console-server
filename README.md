@@ -1,5 +1,6 @@
-# TianYan-Server 
+| [中文](https://github.com/UnPourTous/tianyan-server/blob/master/README.zh-CN.md) | [英文](https://github.com/UnPourTous/tianyan-server/blob/master/README.md) |
 
+# TianYan-Server 
 ## 0. Introduction 
 Tianyan-Server is an open source log manager backend which can be private deployed.
 
