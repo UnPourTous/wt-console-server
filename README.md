@@ -1,4 +1,4 @@
-| [中文](https://github.com/UnPourTous/tianyan-server/blob/master/README.zh-CN.md) | [英文](https://github.com/UnPourTous/tianyan-server/blob/master/README.md) |
+| [中文](https://github.com/UnPourTous/tianyan-server/blob/master/README.zh-CN.md) | [English](https://github.com/UnPourTous/tianyan-server/blob/master/README.md) |
 
 # TianYan-Server 
 ## 0. Introduction 
@@ -61,8 +61,4 @@ The corresponding response which contain the log id we need.
 
 Then you can use this log id to get your uploaded log at [http://youhostname:3000/#!/logviewer/520](http://youhostname:3000/#!/logviewer/520)
 
-
-## 3. Production Deployment
-
-
-## 4. Security Tips
+## 3. Security Tips
