@@ -5,7 +5,7 @@ Tianyan-Server is an open source log manager backend which can be private deploy
 
 ## 1. Setup Server
 ```
-git clone xxxx
+git clone https://github.com/UnPourTous/tianyan-server.git
 cd tianyan-server 
 yarn 
 
