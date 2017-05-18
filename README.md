@@ -13,8 +13,7 @@ yarn
 // setup dev directly
 node ./bin/www --exec babel-node
 // or use pm2 
-
-
+pm2 start --interpreter babel-node ./bin/www
 ```
 
 ## 2. Log format
