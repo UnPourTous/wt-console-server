@@ -12,7 +12,7 @@ yarn
 
 // babel-node will be used
 // setup dev directly
-node ./bin/www --exec babel-node
+npm run dev
 // or use pm2 
 pm2 start --interpreter babel-node ./bin/www
 ```
