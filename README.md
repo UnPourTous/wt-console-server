@@ -42,11 +42,11 @@ curl -X POST \
   "logList": [
   	{
   	  "ts": "1495063513667",
-      "msg": "log content, json or object should be convert to string"
+          "msg": "log content, json or object should be convert to string"
   	}, 
   	{
   	  "ts": "1495063513667",
-      "msg": "log content, json or object should be convert to string"
+          "msg": "log content, json or object should be convert to string"
   	}
   ]
 }'
