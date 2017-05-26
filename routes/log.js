@@ -43,7 +43,7 @@ router.get('/', function (req, res, next) {
     files = files.map(item => {
       return parseInt(item)
     })
-    files = files.sort().slice(-1 * limit).reverse()
+    files = files.sort((x, y) => {return parseInt(x) - parseInt(y)}).slice(-1 * limit).reverse()
     console.log(files)
     res.json(files)
   })
