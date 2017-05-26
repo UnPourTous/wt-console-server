@@ -1,2 +1,2 @@
 #!/bin/bash
-pm2 start --interpreter babel-node ./bin/www
+./node_modules/.bin/babel-node bin/www
