@@ -59,7 +59,7 @@ The corresponding response which contain the log id we need.
 }
 ```
 
-Then you can use this log id to get your uploaded log at [http://youhostname:3000/#!/logviewer/520](http://youhostname:3000/#!/logviewer/520)
+Then you can use this log id to get your uploaded log at [http://yourhostname:3000/#!/logviewer/520](http://youhostname:3000/#!/logviewer/520)
 
 ## 3. Security Tips
 
