@@ -44,18 +44,14 @@ router.get('/', function (req, res, next) {
       return parseInt(item)
     })
     files = files.sort((x, y) => {return parseInt(x) - parseInt(y)}).slice(-1 * limit).reverse()
-    console.log(files)
     res.json(files)
   })
 })
 
 router.post('/', function (req, res, next) {
-  console.log(req.body)
   const config = req.app.get('config')
   const uploadFileDir = config.fileUploadPath
 
-  console.log(req.app.locals.maxLogId)
-  console.log(req.app.locals)
   let logFileId = '' + (req.app.locals.maxLogId + 1)
   let filePath = path.join(uploadFileDir, '' + logFileId)
   if (req && req.body) {
