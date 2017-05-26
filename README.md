@@ -18,8 +18,9 @@ yarn
 // babel-node will be used
 // setup dev directly
 npm run dev
+
 // or use pm2 
-pm2 start --interpreter babel-node ./bin/www
+pm2 start ./scripts/setup.sh --name tianyan-server
 ```
 
 ## 2. Log format
