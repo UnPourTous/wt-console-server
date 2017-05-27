@@ -13,13 +13,13 @@ angular.module('myApp.sub').config(['$routeProvider', function ($routeProvider) 
     data.logId = $routeParams.logId || ''
     if (data.logId) {
       queryLog(data.logId)
-
-      LogViewerService.requestRecentLogIdList().then(response => {
-        data.recentLogIdList = response
-      }, error => {
-        console.log(error)
-      })
     }
+
+    LogViewerService.requestRecentLogIdList().then(response => {
+      data.recentLogIdList = response
+    }, error => {
+      console.log(error)
+    })
 
     // this._mdPanel = $mdPanel
 
