@@ -54,7 +54,8 @@ router.post('/', function (req, res, next) {
 
   let logFileId = '' + (req.app.locals.maxLogId + 1)
   let filePath = path.join(uploadFileDir, '' + logFileId)
-  if (req && req.body) {
+
+  if (req && req.body && req.body.logList) {
     mkdirp(uploadFileDir, function (err) {
       if (err) {
         res.status(500).json(err)
