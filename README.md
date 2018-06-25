@@ -8,6 +8,8 @@ Tianyan-Server is an open source log manager backend which can be private deploy
 Install `nodemon` if not.
 ``` shell 
 npm install nodemon -g 
+npm install babel-node -g 
+
 ```
 
 ``` shell
