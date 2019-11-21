@@ -1,8 +1,8 @@
-| [中文](https://github.com/UnPourTous/tianyan-server/blob/master/README.zh-CN.md) | [English](https://github.com/UnPourTous/tianyan-server/blob/master/README.md) |
+| [中文](https://github.com/UnPourTous/wt-console-server/blob/master/README.zh-CN.md) | [English](https://github.com/UnPourTous/wt-console-server/blob/master/README.md) |
 
-# TianYan-Server 
+# wt-console-server
 ## 0. Introduction 
-Tianyan-Server is an open source log manager backend which can be private deployed.
+wt-console-server is an open source log manager backend which can be private deployed.
 
 ## 1. Setup Server
 Install `nodemon` if not.
@@ -13,8 +13,8 @@ npm install babel-node -g
 ```
 
 ``` shell
-git clone https://github.com/UnPourTous/tianyan-server.git
-cd tianyan-server 
+git clone https://github.com/UnPourTous/wt-console-server.git
+cd wt-console-server 
 yarn 
 
 // babel-node will be used
@@ -22,7 +22,7 @@ yarn
 npm run dev
 
 // or use pm2 
-pm2 start ./scripts/setup.sh --name tianyan-server
+pm2 start ./scripts/setup.sh --name wt-console-server
 ```
 
 ## 2. Log format
